@@ -1,0 +1,65 @@
+<form [formGroup] = "createBook" (ngSubmit)="onCreateBook()">
+  <label for="nameOfBook">Name of Book</label>
+  <input 
+   type="text"
+   name = "nameOfBook"
+   formControlName="nameOfBook"
+   required
+  >
+ 
+  <label for="author">Author</label>
+  <input 
+   type="text"
+   name = "author"
+   formControlName="author"
+   required
+  >
+ 
+  <label for="genre">Genre</label>
+  <select
+   name="genre"
+   formControlName="genre"
+   required>
+
+  <option *ngFor="let g of genres" value="{{ g }}">{{ g }}</option>
+  </select>
+ 
+  <label for="pubYear">Publication Year</label>
+  <input 
+   type="number"
+   name = "pubYear"
+   formControlName="pubYear"
+   required
+  >
+ 
+  <label for="rating">Rating</label>
+  <select
+   name="rating"
+   formControlName="rating"
+   required
+  >
+   <option *ngFor="let rating of ratings" value="{{ rating.value }}">{{ rating.view }}</option>
+  </select>
+   
+  <button
+   [disabled] = "!useBtn"
+   type="submit"
+  >
+  {{ useBtn === false ? 'Think about a book' : 'Add Book'}}
+  </button>
+ </form>
+
+ <!-- <div *ngIf="books.length !== 0; else noBook" >
+   <p *ngFor="let book of books">{{ book.nameOfBook }}, by {{book.author}}. A {{book.genre}} book, written in 
+     {{book.pubYear }}. It is {{ book.rating }}.</p>
+ </div>
+
+ <ng-template #noBook>
+   <p>No book created</p>
+ </ng-template> -->
+
+ <app-display-books 
+  *ngFor="let scroll of books"
+  [libro]="scroll">
+
+</app-display-books>
